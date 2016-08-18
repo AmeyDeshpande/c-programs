@@ -1,0 +1,6 @@
+class Row
+{
+  void gotorow(int);
+private:
+  int row;
+}

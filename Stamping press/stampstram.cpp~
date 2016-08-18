@@ -1,0 +1,20 @@
+#include"stampstream.h"
+#include<iostream>
+#include<ostream>
+
+using namespace std;
+
+std::stampstream::stampstream(int c, int r) : ostream(new stampbuf(c,r))
+{
+}
+std::ostream& operator<<(ostream& os, const Row& row)
+{
+
+  stampbuf* sbp=static_cast<stampbuf*>(os.rdbuf());
+  sbp->set_row( row.gotorow() );
+}
+std::ostream& endrow(ostream& os, const Row& row)
+{
+  stampbuf* sbp=static_cast<stampbuf*>(os.rdbuf());
+  sbp->endrow();
+}
